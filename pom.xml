@@ -46,6 +46,34 @@
 	<build>
 		<plugins>
 			<plugin>
+				<plugin>
+					<groupId>org.jfrog.buildinfo</groupId>
+					<artifactId>artifactory-maven-plugin</artifactId>
+					<version>3.4.0</version>
+					<inherited>false</inherited>
+					<executions>
+						<execution>
+							<id>build-info</id>
+							<goals>
+								<goal>publish</goal>
+							</goals>
+							<configuration>
+								<deployProperties>
+									<gradle>arquimedes</gradle>
+									<review.team>arquimedes</review.team>
+								</deployProperties>
+								<publisher>
+									<contextUrl>http://localhost:8082/artifactory</contextUrl>
+									<username>admin</username>
+									<password>.p4ssword.2022AF</password>
+									<repoKey>maven-local</repoKey>
+									<snapshotRepoKey>maven-local</snapshotRepoKey>
+								</publisher>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
 				<groupId>org.openapitools</groupId>
 				<artifactId>openapi-generator-maven-plugin</artifactId>
 				<version>5.1.0</version>
