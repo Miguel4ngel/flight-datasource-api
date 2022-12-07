@@ -1,0 +1,145 @@
+openapi: 3.0.0
+info:
+  title: Flight API
+  description: API Mantenedor informacion de vuelos.
+  version: 1.0.0
+servers:
+  - url: https://localhost8080/api/v1/
+paths:
+  /flights/{number}:
+    get:
+      tags:
+        - Obtener Vuelo por Numero.
+      description: Obtiene el vuelo asociado al numero de vuelo recibido.
+      operationId: getFlightByNumber
+      parameters:
+        - name: number
+          in: path
+          description: Flight number
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+  /flights:
+    post:
+      tags:
+        - Crear vuelo.
+      description: Crea un nuevo vuelo con la informacion recibida.
+      operationId: createFlight
+      requestBody:
+        description: Informacion de vuelo que desea ser creado.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Flight'
+        required: true
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Flight'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        403:
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+        500:
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiError'
+
+components:
+  schemas:
+    Flight:
+      type: object
+      properties:
+        arrivalTime:
+          type: string
+          format: time
+          description: Hora de llegada.
+          example: 22:10:50
+        departureTime:
+          type: string
+          format: time
+          description: Hora de salida.
+          example: 22:10:50
+        date:
+          type: string
+          format: date
+          description: Fecha vuelo.
+          example: 22:10:50
+        origin:
+          type: string
+          description: Codigo pais de origen.
+          example: CHL
+        destination:
+          type: string
+          description: Codigo pais de destino.
+          example: USA
+        originIataCode:
+          type: string
+          description: Codigo IATA aeropuerto de origen.
+          example: SCL
+        destinationIataCode:
+          type: string
+          description: Codigo IATA aeropuerto de destino.
+          example: JFK
+        number:
+          type: number
+          description: Numero de vuelo.
+          example: 560
+        type:
+          type: string
+          description: Tipo de vuelo.
+          example: Charter
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Codigo interno de error.
+          example: "401"
+        message:
+          type: string
+          description: Mensaje asociado al error.
+          example: " Unauthorized"
+        timestamp:
+          type: string
+          format: timestamp
+          example: "1985‑09‑25 17:45:30.005"
+

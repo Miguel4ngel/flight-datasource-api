@@ -1,0 +1,6 @@
+com\latam\flight\model\ApiError.class
+api\arquimedes\flight\FlightApplication.class
+com\latam\flight\api\FlightsApi.class
+com\latam\flight\model\Flight.class
+com\latam\flight\api\ApiUtil.class
+com\latam\flight\api\FlightsApiController.class

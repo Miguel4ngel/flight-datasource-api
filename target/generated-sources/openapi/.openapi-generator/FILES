@@ -1,0 +1,5 @@
+src/main/java/com/latam/flight/api/ApiUtil.java
+src/main/java/com/latam/flight/api/FlightsApi.java
+src/main/java/com/latam/flight/api/FlightsApiController.java
+src/main/java/com/latam/flight/model/ApiError.java
+src/main/java/com/latam/flight/model/Flight.java
